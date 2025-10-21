@@ -1,7 +1,12 @@
 "use client";
 import { useEffect, useRef } from "react";
 
-type Props = { src: string; poster?: string; offsetTop?: boolean };
+type Props = {
+    src: string;
+    poster?: string;
+    /** If true, subtract header height (64px). */
+    offsetTop?: boolean;
+};
 
 export default function HeroVideo({ src, poster, offsetTop = false }: Props) {
     const ref = useRef<HTMLVideoElement>(null);
@@ -12,18 +17,22 @@ export default function HeroVideo({ src, poster, offsetTop = false }: Props) {
         if (!v) return;
 
         v.muted = true;
-        v.playsInline = true;                           // standard
-        (v as HTMLVideoElement & { webkitPlaysInline?: boolean }).webkitPlaysInline = true; // old iOS
+        v.playsInline = true;
+        (v as HTMLVideoElement & { webkitPlaysInline?: boolean }).webkitPlaysInline = true;
 
-        const tryPlay = () => v.play().catch(() => { /* ignore */ });
+        const tryPlay = () => {
+            void v.play().catch(() => { });
+        };
 
-        // attempt immediately and on first user interaction
+        // attempt immediately and once on first touch (iOS/Samsung fallback)
         tryPlay();
-        const onTouch = () => { tryPlay(); window.removeEventListener("touchstart", onTouch, { once: true } as any); };
+        const onTouch = () => tryPlay();
         window.addEventListener("touchstart", onTouch, { once: true });
 
-        return () => window.removeEventListener("touchstart", onTouch as any);
-    }, []);
+        return () => {
+            window.removeEventListener("touchstart", onTouch);
+        };
+    }, [src]);
 
     return (
         <section className="relative w-full">

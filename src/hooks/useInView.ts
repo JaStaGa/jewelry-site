@@ -10,22 +10,29 @@ export function useInView<T extends HTMLElement>(
     const [inView, setInView] = useState(false);
 
     useEffect(() => {
-        if (!ref.current) return;
-        if (window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches) {
+        const el = ref.current;
+        if (!el) return;
+
+        const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+        if (reduce) {
             setInView(true);
             return;
         }
+
         const obs = new IntersectionObserver((entries) => {
             entries.forEach((e) => {
                 if (e.isIntersecting) {
                     setInView(true);
                     if (once) obs.unobserve(e.target);
-                } else if (!once) setInView(false);
+                } else if (!once) {
+                    setInView(false);
+                }
             });
         }, options);
-        obs.observe(ref.current);
+
+        obs.observe(el);
         return () => obs.disconnect();
-    }, [options.root, options.rootMargin, options.threshold, once]);
+    }, [options, once]);
 
     return { ref, inView } as const;
 }
