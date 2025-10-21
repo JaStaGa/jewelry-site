@@ -116,7 +116,31 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+:root {
+  --bg: #0a0a0a;
+  /* near-black */
+  --fg: #e6e6e6;
+  /* soft white */
+  --muted: #9ca3af;
+  /* gray-400 */
+  --card: #0f0f0f;
+  /* panel */
+  --border: #1f1f1f;
+  /* hairline */
+  --gold: #d4af37;
+  /* primary accent */
+  --gold-ink: #0b0b0b;
+  /* readable on gold */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
   }
 }
