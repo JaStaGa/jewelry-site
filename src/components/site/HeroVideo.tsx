@@ -11,10 +11,9 @@ export default function HeroVideo({ src, poster, offsetTop = false }: Props) {
         const v = ref.current;
         if (!v) return;
 
-        // ensure flags before play()
         v.muted = true;
-
-        v.playsInline = true;
+        v.playsInline = true;                           // standard
+        (v as HTMLVideoElement & { webkitPlaysInline?: boolean }).webkitPlaysInline = true; // old iOS
 
         const tryPlay = () => v.play().catch(() => { /* ignore */ });
 
