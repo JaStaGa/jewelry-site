@@ -1,11 +1,12 @@
 "use client";
 
-type Props = { src: string; poster?: string };
+type Props = { src: string; poster?: string; offsetTop?: boolean };
 
-export default function HeroVideo({ src, poster }: Props) {
+export default function HeroVideo({ src, poster, offsetTop = true }: Props) {
+    const heightClass = offsetTop ? "h-[calc(100svh-4rem)]" : "h-[100svh]";
     return (
         <section className="relative w-full">
-            <div className="relative aspect-16/7 sm:aspect-16/6 md:aspect-16/5 lg:aspect-16/4 xl:aspect-[16/3.2] overflow-hidden">
+            <div className={`relative ${heightClass} max-h-[1100px] min-h-[60svh] overflow-hidden`}>
                 <video
                     className="h-full w-full object-cover"
                     src={src}
@@ -14,8 +15,9 @@ export default function HeroVideo({ src, poster }: Props) {
                     muted
                     playsInline
                     loop
+                    preload="metadata"
                 />
-                <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/20 via-black/10 to-black/30" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/10" />
             </div>
         </section>
     );
