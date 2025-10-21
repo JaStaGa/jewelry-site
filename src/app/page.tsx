@@ -43,7 +43,7 @@ export default function Home() {
               <Image src="/images/mens.jpg" alt="Mens jewelry selection" fill className="object-cover" />
             </div>
           </FadeIn>
-          
+
           <FadeIn delayMs={120}>
             <div>
               <h3 className="text-3xl font-semibold">Shop Mens Jewelry</h3>
