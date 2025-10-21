@@ -16,7 +16,7 @@ export default function Header() {
         <header className="sticky top-0 z-50 border-b border-border bg-white/80 backdrop-blur">
             <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
                 <Link href="/" className="text-xl tracking-widest font-semibold">
-                    <span className="px-2 py-1 rounded-sm bg-gold text-gold-ink">J</span>
+                    <span className="px-2 py-1 rounded-sm bg-gold text-gold-ink">JSG</span>
                     <span className="ml-2">Jewelry</span>
                 </Link>
                 <nav className="hidden md:flex gap-6 text-sm">
