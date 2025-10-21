@@ -13,10 +13,10 @@ const nav = [
 export default function Header() {
     const pathname = usePathname();
     return (
-        <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[color:rgb(10_10_10/0.7)] backdrop-blur">
+        <header className="sticky top-0 z-50 border-b border-border bg-white/80 backdrop-blur">
             <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
                 <Link href="/" className="text-xl tracking-widest font-semibold">
-                    <span className="px-2 py-1 rounded-sm bg-[var(--gold)] text-[var(--gold-ink)]">J</span>
+                    <span className="px-2 py-1 rounded-sm bg-gold text-gold-ink">J</span>
                     <span className="ml-2">Jewelry</span>
                 </Link>
                 <nav className="hidden md:flex gap-6 text-sm">
@@ -26,7 +26,7 @@ export default function Header() {
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className={`hover:text-[var(--gold)] transition-colors ${active ? "text-[var(--gold)]" : "text-[var(--fg)]"
+                                className={`text-fg hover:text-gold transition-colors ${active ? "text-gold" : "text-fg"
                                     }`}
                             >
                                 {item.label}
@@ -35,7 +35,7 @@ export default function Header() {
                     })}
                 </nav>
                 <div className="md:hidden">
-                    <Link href="/search" aria-label="Search" className="text-[var(--muted)] hover:text-[var(--gold)]">Search</Link>
+                    <Link href="/search" aria-label="Search" className="text-muted text-fg hover:text-gold">Search</Link>
                 </div>
             </div>
         </header>

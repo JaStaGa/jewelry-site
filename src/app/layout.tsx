@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 import Header from "@/components/site/Header";
 import Footer from "@/components/site/Footer";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const body = Inter({ subsets: ["latin"], variable: "--font-body" });
+const display = Montserrat({ subsets: ["latin"], variable: "--font-display" });
 
 export const metadata: Metadata = {
   title: "Jewelry Site",
@@ -16,9 +16,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-[var(--bg)] text-[var(--fg)]`}
-      >
+      <body className={`${body.variable} ${display.variable} antialiased min-h-screen bg-bg text-fg`}>
         <Header />
         <main className="min-h-[70vh]">{children}</main>
         <Footer />
